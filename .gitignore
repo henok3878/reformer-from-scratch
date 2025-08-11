@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+build/
+dist/
+*.egg-info/
+
+# Virtual environments
+.venv/
+.conda/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Type checking
+.mypy_cache/
+
+# macOS
+.DS_Store
+
+# VS Code 
+.vscode/
+
+# Model artifacts
+*.pth
+*.pt
+
+# Logs
+*.log
+
+# data, tokenizers & experiments
+data/
+tokenizers/ 
+experiments/            
+
+# ignore wandb 
+wandb/
+
+# ignore env variables 
+.env
+hostfile 
