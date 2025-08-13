@@ -1,0 +1,44 @@
+model:
+  src_vocab_size: 37000
+  tgt_vocab_size: 37000
+  d_model: 512
+  num_heads: 8
+  d_ff: 2048
+  num_encoder_layers: 6
+  num_decoder_layers: 6
+  dropout: 0.1
+  src_max_len: 128
+  tgt_max_len: 128
+
+training:
+  seed: 42
+  batch_size: 144
+  epochs: 24
+  lr_factor: 1.0
+  num_workers: 8
+  quick_val_size: 1024 # 1024 examples for quick eval
+  quick_eval_every: 1000 # steps
+  full_eval_every: 10000 # steps
+  warmup_steps: 4000
+  weight_decay: 0.01
+  adam_eps: 1e-9
+  adam_beta1: 0.9
+  adam_beta2: 0.98
+  label_smoothing: 0.1
+  max_grad_norm: 1.0
+
+experiment:
+  base_dir: "experiments"
+  checkpoint_dir: "checkpoints"
+  save_every_steps: 10000 # steps
+  keep_last_n: 10 # keep last n step checkpoints
+  log_every: 100 # log every N batches
+  log_dir: "logs"
+
+data:
+  dataset_name: "wmt14"
+  subset: "de-en"
+  lang_src: "en"
+  lang_tgt: "de"
+  tokenization_strategy: "joint" # "joint" or "separate"
+  validation_fraction: 0.05
