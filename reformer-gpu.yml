@@ -1,0 +1,12 @@
+name: reformer-gpu
+channels:
+  - conda-forge
+
+dependencies:
+  - python=3.12
+  - numpy
+  - pip
+  - git
+  - pip:
+      - --extra-index-url https://download.pytorch.org/whl/cu118
+      - torch==2.5.1

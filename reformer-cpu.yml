@@ -1,0 +1,11 @@
+name: reformer-cpu
+channels:
+  - conda-forge
+  - pytorch
+
+dependencies:
+  - python=3.12
+  - numpy
+  - pytorch-cpu
+  - pip
+  - git
