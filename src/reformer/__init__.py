@@ -1,36 +1,10 @@
-[build-system]
-requires = ["setuptools>=61.0"]
-build-backend = "setuptools.build_meta"
+from .transformer_rope import TransformerRoPE
+from .components.multi_head_rope import MultiHeadAttentionRoPE
+from .components.rope import RotaryEmbedding
 
-[project]
-name = "reformer"
-version = "0.1.0"
-description = "Transformer with RoPE implementation"
-requires-python = ">=3.12"
-dependencies = [
-    "transformer-from-scratch @ git+https://github.com/henok3878/transformer-from-scratch.git",
-    "torch",
-    "numpy",
-    "wandb",
-    "datasets",
-    "pyyaml",
-    "tokenizers",
-    "pydantic",
-    "sacrebleu<2.0.0",
+__version__ = "0.1.0"
+__all__ = [
+    "TransformerRoPE",
+    "MultiHeadAttentionRoPE", 
+    "RotaryEmbedding"
 ]
-
-[project.optional-dependencies]
-dev = [
-    "pytest",
-    "pytest-cov",
-    "black",
-    "isort",
-    "flake8",
-    "mypy",
-]
-
-[tool.setuptools]
-package-dir = {"" = "src"}
-
-[tool.setuptools.packages.find]
-where = ["src"]
