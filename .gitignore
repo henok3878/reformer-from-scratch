@@ -35,6 +35,7 @@ htmlcov/
 data/
 tokenizers/ 
 experiments/            
+tmp/
 
 # ignore wandb 
 wandb/
