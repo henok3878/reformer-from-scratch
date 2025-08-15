@@ -7,9 +7,6 @@ name = "reformer"
 version = "0.1.0"
 description = "Transformer with RoPE implementation"
 requires-python = ">=3.12"
-dependencies = [
-    "transformer-from-scratch @ git+https://github.com/henok3878/transformer-from-scratch.git",
-]
 
 [project.optional-dependencies]
 dev = [

@@ -4,9 +4,19 @@ channels:
 
 dependencies:
   - python=3.12
-  - numpy
-  - pip
+  - pip>=24
   - git
+  - gcc_linux-64
+  - gxx_linux-64
+  - numpy=1.26.4
+  - pyarrow
+  - datasets
+  - wandb
+  - pyyaml
+  - tokenizers
+  - pydantic
   - pip:
       - --extra-index-url https://download.pytorch.org/whl/cu118
       - torch==2.5.1
+      - "sacrebleu<2.0.0"
+      - "transformer-from-scratch @ git+https://github.com/henok3878/transformer-from-scratch.git"
