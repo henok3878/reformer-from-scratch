@@ -119,12 +119,13 @@ class Trainer:
             model_config=self.config.model, 
             data_config=self.config.data 
         ).to(self.device) 
-        model = torch.compile(model=model) 
         if IS_DDP: 
             self.model = DDP(model, device_ids=[self.local_rank])
         else:
             self.model = model 
         
+        model = torch.compile(model=model) 
+
         self.optimizer = torch.optim.AdamW(
             self.model.parameters(), lr=self.config.training.lr_factor, betas=(self.config.training.adam_beta1, self.config.training.adam_beta2),weight_decay=self.config.training.weight_decay, eps=self.config.training.adam_eps, 
             fused=True 
