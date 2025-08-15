@@ -1,25 +1,25 @@
-from functools import partial
+import argparse
 import math
-import sacrebleu
 import os
 import shutil
-import wandb
-from typing import cast
-import torch
-import argparse
-import torch.nn as nn
 from datetime import datetime
+from functools import partial
+from typing import cast
+
+import sacrebleu
+import torch
+import torch.distributed as dist
+import torch.nn as nn
+import wandb
+from datasets import Dataset, load_from_disk
+from torch.nn.parallel import DistributedDataParallel as DDP
 from torch.optim.lr_scheduler import LambdaLR
 from torch.utils.data import DataLoader, DistributedSampler
-from torch.nn.parallel import DistributedDataParallel as DDP
-import torch.distributed as dist
-from datasets import Dataset, load_from_disk
-from tokenizers import Tokenizer
-
-
-from transformer import AppConfig, load_config, TokenizationStrategy
+from transformer import AppConfig, TokenizationStrategy, load_config
 from transformer.components.decoding import greedy_search
+
 from reformer.transformer_rope import TransformerRoPE
+from tokenizers import Tokenizer
 
 IS_DDP = "RANK" in os.environ
 

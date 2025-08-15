@@ -1,5 +1,6 @@
+from transformer.config import DataConfig, ModelConfig
 from transformer.transformer import Transformer
-from transformer.config import ModelConfig, DataConfig
+
 from .components.multi_head_rope import MultiHeadAttentionRoPE
 
 

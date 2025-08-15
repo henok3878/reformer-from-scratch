@@ -1,9 +1,11 @@
 import math
+from typing import Union
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from typing import Union
 from transformer.components.base.attention import BaseAttention
+
 from .rope import RotaryEmbedding
 
 
