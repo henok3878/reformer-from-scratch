@@ -45,10 +45,10 @@ class MultiHeadAttentionRoPE(BaseAttention):
         batch_size, x_seq_len, _ = x.shape
         _, kv_seq_len, _ = kv.shape
 
-        query = self.q_proj(x) # shape: (batch_size, src_seq_len, d_model)
-        key = self.k_proj(kv) # shape: (batch_size, kv_seq_len, d_model)
-        value = self.v_proj(kv) # shape: (batch_size, kv_seq_len, d_model)
-        
+        query = self.q_proj(x)  # shape: (batch_size, src_seq_len, d_model)
+        key = self.k_proj(kv)  # shape: (batch_size, kv_seq_len, d_model)
+        value = self.v_proj(kv)  # shape: (batch_size, kv_seq_len, d_model)
+
         # reshape q, k, and v to multi-head (decompose the d_model -> (num_heads, head_dim))
         query = query.view(
             batch_size, x_seq_len, self.num_heads, self.head_dim
@@ -60,7 +60,7 @@ class MultiHeadAttentionRoPE(BaseAttention):
             batch_size, kv_seq_len, self.num_heads, self.head_dim
         ).transpose(1, 2)
 
-        # apply RoPE 
+        # apply RoPE
         query, key = self.rope.apply_rotary_pos_emb(query, key)
 
         scores = torch.matmul(query, key.transpose(-2, -1)) / math.sqrt(self.head_dim)
@@ -71,7 +71,7 @@ class MultiHeadAttentionRoPE(BaseAttention):
         attn = F.softmax(scores, dim=-1)
         attn = self.dropout(attn)
 
-        context = attn @ value 
+        context = attn @ value
         context = (
             context.transpose(1, 2)
             .contiguous()
